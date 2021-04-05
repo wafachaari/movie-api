@@ -65,18 +65,18 @@
       </td>
     </tr>
     <tr>
-      <td>Return data about a genre by title</td>
-      <td>/movies/[title]/genre</td>
+      <td>Return data about a genre by Name</td>
+      <td>/movies/genre/[Name]</td>
       <td>GET</td>
       <td>NONE</td>
       <td>A text message indicating
-        the genre of the movie
+        the description of a specific genre
       </td>
     </tr>
     <tr>
 
       <td>Return data about a director by name</td>
-      <td>/movies/[name]/[director]</td>
+      <td>/movies/director/[name]</td>
       <td>GET</td>
       <td>NONE</td>
       <td>A text message indicating director's inormation
@@ -104,20 +104,16 @@
 
       <td>/users/[username]</td>
       <td>PUT</td>
-      <td>none</td>
-      <td>A text message indicating
-        user's information
-        that was updated
+      <td>JSON </td>
+      <td>a json object containing info of the user
       </td>
     </tr>
     <tr>
       <td>Allow users to add a movie to their list of favorites</td>
-      <td>/users/[username]/[favorite-movies]</td>
-      <td>POST</td>
-      <td>A JSON object holding
-        data about the user to
-        add a movie</td>
-      <td>A text message </td>
+      <td>/users/[username]/movies/[favorite-movies]</td>
+      <td>Put</td>
+      <td>None</td>
+      <td>a json object containing user information</td>
     </tr>
     <tr>
       <td>Allow users to remove a movie from their list of favorites </td>
@@ -136,7 +132,211 @@
       <td>NONE</td>
       <td> text that a user email has been removed</td>
     </tr>
+    <tr>
+      <td>Return a list of actors </td>
+      <td>/actors</td>
+      <td>GET</td>
+      <td>NONE</td>
+      <td> Json object containing a list if all actors</td>
+    </tr>
   </table>
+
+
+  <h2> Method and Response </h2>
+  <h3>Movies - Return ALL movies</h3>
+  <p><span>GET </span>/movies</p>
+  <p><strong>Example response:</strong></p>
+  <pre>
+    [
+    {
+    "Genre": {
+    "Name": "Thriller",
+    "Description": "Thriller is a genre of fiction, having numerous, often overlapping subgenres.."
+    },
+    "Director": {
+    "Name": "Alfred Hitchcock",
+    "Bio": "Alfred Hitchcock was an English director and filmmaker. Popularly known as the Master of Suspense for his use of innovative film techniques in thrillers.",
+    "Birth": "1899",
+    "Death": "1980"
+    },
+    "Actors": [
+    "6068416beca344bb017dc246",
+    "6068417feca344bb017dc247"
+    ],
+    "_id": "606736f3f9d3bdfd6b545d5a",
+    "Title": "Vertigo",
+    "Description": "Vertigo is a 1958 American film noir psychological thriller film directed and produced by Alfred Hitchcock. ",
+    "ImagePath": "vertigo.png",
+    "Featured": true,
+    " Director": {
+    "Bio": "Alfred Joseph Hitchcock was born in Leytonstone, Essex, England. He was the son of Emma Jane (Whelan; 1863 - 1942) and East End greengrocer William Hitchcock (1862 - 1914) "
+    }
+    },
+    {
+    "Genre": {
+    "Name": "Comedy",
+    "Description": "A comedy film is a category of film in which the main emphasis is on humor.."
+    },
+    "Director": {
+    "Name": "Alfred Hitchcock",
+    "Bio": "Alfred Hitchcock was an English director and filmmaker. Popularly known as the Master of Suspense for his use of innovative film techniques in thrillers.",
+    "Birth": "1899",
+    "Death": "1980"
+    },
+    "Actors": [],
+    "_id": "60673a47f9d3bdfd6b545d5b",
+    "Title": "The Trouble with Harry",
+    "Description": "The trouble with Harry is that he is dead and, while no one really minds, everyone feels responsible. After Harry 's body is found in the woods, several locals must determine not only how and why he was killed but what to do with
+    the body.....",
+    "ImagePath": "thetroublewithharry.png",
+    "Featured": true
+    },
+  </pre>
+
+  <h3>Movies - Return data about a single movie by title to the user</h3>
+  <p><span>GET </span>/movies/Vertigo</p>
+  <p><strong>Example response:</strong></p>
+
+  <pre>{
+    "Genre": {
+        "Name": "Thriller",
+        "Description": "Thriller is a genre of fiction, having numerous, often overlapping subgenres.."
+    },
+    "Director": {
+        "Name": "Alfred Hitchcock",
+        "Bio": "Alfred Hitchcock was an English director and filmmaker. Popularly known as the Master of Suspense for his use of innovative film techniques in thrillers.",
+        "Birth": "1899",
+        "Death": "1980"
+    },
+    "Actors": [
+        "6068416beca344bb017dc246",
+        "6068417feca344bb017dc247"
+    ],
+    "_id": "606736f3f9d3bdfd6b545d5a",
+    "Title": "Vertigo",
+    "Description": "Vertigo is a 1958 American film noir psychological thriller film directed and produced by Alfred Hitchcock. ",
+    "ImagePath": "vertigo.png",
+    "Featured": true,
+    " Director": {
+        "Bio": "Alfred Joseph Hitchcock was born in Leytonstone, Essex, England. He was the son of Emma Jane (Whelan; 1863 - 1942) and East End greengrocer William Hitchcock (1862 - 1914) "
+    }
+}</pre>
+  <h3>Movies - Return data about a director by name</h3>
+  <p><span>GET </span>/movies/director/Alfred%20Hitchcock</p>
+  <p><strong>Example response:</strong></p>
+  <pre>"A comedy film is a category of film in which the main emphasis is on humor.."</pre>
+  <h3>Movies - Return description about a genre by name</h3>
+  <p><span>GET </span>/movies/genre/Comedy</p>
+  <p><strong>Example response:</strong></p>
+  <pre>{
+    "Name": "Alfred Hitchcock",
+    "Bio": "Alfred Hitchcock was an English director and filmmaker. Popularly known as the Master of Suspense for his use of innovative film techniques in thrillers.",
+    "Birth": "1899",
+    "Death": "1980"
+}</pre>
+
+  <h3>Users - Allow new users to register</h3>
+  <p><span>POST </span>/users</p>
+  <p><strong>Example request:</strong></p>
+  <pre>
+   {
+           "Username": "wafa chaari",
+           "Password": "wafa",
+           "Email": "wafachaari@hotmail.fr",
+           "Birthday": "09/05/2003"
+
+        }</pre>
+
+  <p><strong>Example response:</strong></p>
+
+  <pre>{
+    "FavoriteMovies": [],
+    "_id": "606b141abec8c56010d9d18a",
+    "Username": "wafa chaari",
+    "Password": "wafa",
+    "Email": "wafachaari@hotmail.fr",
+    "Birthday": "2003-09-04T22:00:00.000Z",
+    "__v": 0
+}</pre>
+  <h3>Users - Allow users to update their info</h3>
+  <p><span> put </span>/users/wafa%20chaari</p>
+  <p><strong>Example request:</strong></p>
+  <pre>
+    {
+            "Username": "wafa chaari",
+            "Password": "wafa45",
+            "Email": "wafachaari@hotmail.fr",
+            "Birthday": "09/05/2003"
+
+         }</pre>
+
+  <p><strong>Example response:</strong></p>
+  <pre>{
+    "FavoriteMovies": [],
+    "_id": "606b141abec8c56010d9d18a",
+    "Username": "wafa chaari",
+    "Password": "wafa45",
+    "Email": "wafachaari@hotmail.fr",
+    "Birthday": "2003-09-04T22:00:00.000Z",
+    "__v": 0
+}</pre>
+
+  <h3>Users - Allow users to add movie to their favorite_movies list</h3>
+  <p><span> post </span>/users/amirtourab/movies/606741b3fbdfb311da6b2f30</p>
+
+
+  <p><strong>Example response:</strong></p>
+  <pre>{
+    "FavoriteMovies": [
+        "60673f4cfbdfb311da6b2f2d",
+        "606741b3fbdfb311da6b2f30"
+    ],
+    "_id": "60674a4ffbdfb311da6b2f35",
+    "Username": "amirtourab",
+    "Password": "amir89",
+    "Email": " amirtourab@gmail.com",
+    "Birthday": "1989-09-09T22:00:00.000Z"
+}</pre>
+
+
+  <h3>Users - Remove a movie from their list of favorites</h3>
+  <p><span> post </span>/users/amirtourab/movies/606741b3fbdfb311da6b2f30</p>
+
+
+  <p><strong>Example response:</strong></p>
+  <pre>606741b3fbdfb311da6b2f30 was deleted.
+   </pre>
+
+  <h3>Actors - show list of actors</h3>
+  <p><span> Get </span>/actors</p>
+
+
+  <p><strong>Example response:</strong></p>
+  <pre>[
+    {
+        "_id": "6068416beca344bb017dc246",
+        "Name": "James Stewart ",
+        "actorGender": "M"
+    },
+    {
+        "_id": "6068417feca344bb017dc247",
+        "Name": " Harrison Ford ",
+        "actorGender": "M"
+    },
+    {
+        "_id": "6068419beca344bb017dc248",
+        "Name": "Stephen Baldwin  ",
+        "actorGender": "M"
+    },
+    {
+        "_id": "606841beeca344bb017dc249",
+        "Name": "Nicole Kidman   ",
+        "actorGender": "F"
+    }
+]</pre>
+
+
+
 
 </body>
 

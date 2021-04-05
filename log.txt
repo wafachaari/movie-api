@@ -1,0 +1,11 @@
+URL: /
+Timestamp: Tue Mar 23 2021 14:57:19 GMT+0100 (Mitteleuropäische Normalzeit)
+
+URL: /favicon.ico
+Timestamp: Tue Mar 23 2021 14:57:19 GMT+0100 (Mitteleuropäische Normalzeit)
+
+URL: /documentation.html
+Timestamp: Tue Mar 23 2021 14:57:36 GMT+0100 (Mitteleuropäische Normalzeit)
+
+URL: /favicon.ico
+Timestamp: Tue Mar 23 2021 14:57:36 GMT+0100 (Mitteleuropäische Normalzeit)
