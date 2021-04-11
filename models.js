@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 let movieSchema = mongoose.Schema({
   Title: {type: String, required: true},
   Description: {type: String, required: true},
@@ -35,7 +36,6 @@ let Actor = mongoose.model('Actor', actorSchema);
 module.exports.Movie = Movie;
 module.exports.User = User;
 module.exports.Actor = Actor;
-const bcrypt = require('bcrypt');
 
 userSchema.statics.hashPassword = password => {
   return bcrypt.hashSync(password, 10);
