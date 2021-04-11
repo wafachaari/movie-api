@@ -35,3 +35,12 @@ let Actor = mongoose.model('Actor', actorSchema);
 module.exports.Movie = Movie;
 module.exports.User = User;
 module.exports.Actor = Actor;
+const bcrypt = require('bcrypt');
+
+userSchema.statics.hashPassword = password => {
+  return bcrypt.hashSync(password, 10);
+};
+
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compareSync(password, this.Password);
+};
