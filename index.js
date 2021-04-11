@@ -5,6 +5,8 @@ const express = require('express'),
   mongoose = require('mongoose'),
   morgan = require('morgan');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('common'));
 app.use(express.static('public'));
@@ -16,7 +18,7 @@ const Actors = Models.Actor;
 const passport = require('passport');
 require('./passport');
 let auth = require('./auth')(app);
-
+const {check, validationResult} = require('express-validator');
 mongoose.connect('mongodb://localhost:27017/movieAPIDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -107,6 +109,7 @@ app.get(
 //Allow new users to register
 
 app.post('/users', (req, res) => {
+  let hashedPassword = Users.hashPassword(req.body.Password);
   const {Username, Password, Email, Birthday} = req.body;
 
   Users.findOne({Username: req.body.Username})
@@ -284,6 +287,10 @@ app.get(
 );
 
 // listen for requests
-app.listen(8080, () => {
+/*app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
+});*/
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Listening on Port ' + port);
 });
