@@ -220,24 +220,26 @@ app.put(
     check('Email', 'Email does not appear to be valid').isEmail(),
   ],
   (req, res) => {
+    let errors = validationResult(req); //checks the validation object for errors
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({errors: errors.array()});
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+
     Users.findOneAndUpdate(
       {Username: req.params.Username},
       {
         $set: req.body,
-        /*  $set: {
-          Username: req.body.Username,
-          Password: req.body.Password,
-          Email: req.body.Email,
-          Birthday: req.body.Birthday,
-        },*/
       },
-      {new: true}, // This line makes sure that the updated document is returned
+      {new: true},
       (err, updatedUser) => {
         if (err) {
           console.error(err);
           res.status(500).send('Error: ' + err);
         } else {
-          res.json(updatedUser);
+          res.status(201).json(updatedUser);
         }
       },
     );
