@@ -43,7 +43,7 @@ const Users = Models.User;
 //require express validator
 const {check, validationResult} = require('express-validator');
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.CONNECTION_URI, {
+mongoose.connect('process.env.CONNECTION_URI', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
