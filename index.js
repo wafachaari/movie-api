@@ -42,18 +42,18 @@ const Users = Models.User;
 
 //require express validator
 const {check, validationResult} = require('express-validator');
-/*
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-*/
+/*
 mongoose.Promise = global.Promise;
 mongoose.connect(
   `mongodb+srv://wafa-chaari:movieapidb30@cluster0.zhrb5.mongodb.net/movieAPIDB?retryWrites=true&w=majority`,
   {useNewUrlParser: true, useUnifiedTopology: true},
 );
-
+*/
 // GET requests
 app.get('/', (req, res) => {
   res.send('Welcome to my top 10 movies!');
