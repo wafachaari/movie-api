@@ -42,13 +42,15 @@ const Users = Models.User;
 
 //require express validator
 const {check, validationResult} = require('express-validator');
-
-// use for home use "mongodb://localhost:27017/movieFlixDB",
-//allows Mongoose to connect to that database so it can perform CRUD operations on the documents it contains from within your REST API.
+/*
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+*/ mongoose.connect(
+  `mongodb+srv://wafa-chaari:movieapidb30@cluster0.zhrb5.mongodb.net/movieAPIDB?retryWrites=true&w=majority`,
+  {useNewUrlParser: true, useUnifiedTopology: true},
+);
 
 // GET requests
 app.get('/', (req, res) => {
@@ -147,7 +149,7 @@ app.post(
       return res.status(422).json({errors: errors.array()});
     }
 
-    //  let hashedPassword = Users.hashPassword(req.body.Password);
+    let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({Username: req.body.Username}) // Search to see if a user with the requested username already exists
       .then(user => {
         if (user) {
