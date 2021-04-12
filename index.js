@@ -54,6 +54,14 @@ mongoose.connect(
   {useNewUrlParser: true, useUnifiedTopology: true},
 );
 
+mongoose.connection
+  .once('open', function() {
+    console.log('Conection has been made!');
+  })
+  .on('error', function(error) {
+    console.log('Error is: ', error);
+  });
+
 // GET requests
 app.get('/', (req, res) => {
   res.send('Welcome to my top 10 movies!');
