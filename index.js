@@ -210,7 +210,7 @@ app.get(
 
 app.put(
   '/users/:Username',
-  passport.authenticate('jwt', {session: false}),
+  //  passport.authenticate('jwt', {session: false}),
   [
     check('Username', 'Username is required').isLength({min: 5}),
     check(
@@ -275,7 +275,7 @@ app.post(
 
 app.get(
   '/users/:Username',
-  passport.authenticate('jwt', {session: false}),
+  //  passport.authenticate('jwt', {session: false}),
   (req, res) => {
     Users.findOne({Username: req.params.Username})
       .then(user => {
