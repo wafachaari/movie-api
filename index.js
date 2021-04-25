@@ -7,16 +7,6 @@ const morgan = require('morgan');
 const passport = require('passport');
 require('./passport');
 const cors = require('cors');
-let allowedOrigins = [
-  '*',
-  /*  'http://localhost:8080/',
-  'https://movie-api-db-30.herokuapp.com/',
-  'http://localhost:1234',*/
-];
-
-const app = express();
-app.use(express.json());
-app.use(bodyParser.json());
 
 //cors security
 app.use(
@@ -33,6 +23,16 @@ app.use(
     },
   }),
 );
+let allowedOrigins = [
+  '*',
+  /*  'http://localhost:8080/',
+  'https://movie-api-db-30.herokuapp.com/',
+  'http://localhost:1234',*/
+];
+
+const app = express();
+app.use(express.json());
+app.use(bodyParser.json());
 let auth = require('./auth')(app);
 //summon express static on public
 app.use(express.static('public'));
