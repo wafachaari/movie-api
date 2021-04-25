@@ -33,7 +33,7 @@ app.use(
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-let auth = require('./auth')(app);
+
 //summon express static on public
 app.use(express.static('public'));
 
@@ -48,6 +48,7 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
 /*
 mongoose.Promise = global.Promise;
 mongoose.connect(
@@ -62,7 +63,7 @@ mongoose.connection
   .on('error', function(error) {
     console.log('Error is: ', error);
   });
-
+let auth = require('./auth')(app);
 // GET requests
 app.get('/', (req, res) => {
   res.send('Welcome to my top 10 movies!');
