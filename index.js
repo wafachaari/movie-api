@@ -15,7 +15,7 @@ let allowedOrigins = [
   'http://localhost:1234',*/
 ];
 //cors security
-app.use(
+/*app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
@@ -28,7 +28,7 @@ app.use(
       return callback(null, true);
     },
   }),
-);
+);*/
 
 const app = express();
 app.use(express.json());
