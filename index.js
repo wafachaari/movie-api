@@ -9,13 +9,17 @@ require('./passport');
 const cors = require('cors');
 let allowedOrigins = [
   '*',
-  'http://localhost:1234',
   /*  'http://localhost:8080/',
   'https://movie-api-db-30.herokuapp.com/',
   'http://localhost:1234',*/
 ];
+
+const app = express();
+app.use(express.json());
+app.use(bodyParser.json());
+
 //cors security
-/*app.use(
+app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
@@ -28,12 +32,8 @@ let allowedOrigins = [
       return callback(null, true);
     },
   }),
-);*/
-
-const app = express();
-app.use(express.json());
-app.use(bodyParser.json());
-
+);
+let auth = require('./auth')(app);
 //summon express static on public
 app.use(express.static('public'));
 
@@ -48,7 +48,6 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 /*
 mongoose.Promise = global.Promise;
 mongoose.connect(
@@ -63,7 +62,7 @@ mongoose.connection
   .on('error', function(error) {
     console.log('Error is: ', error);
   });
-let auth = require('./auth')(app);
+
 // GET requests
 app.get('/', (req, res) => {
   res.send('Welcome to my top 10 movies!');
