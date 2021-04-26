@@ -7,10 +7,12 @@ const morgan = require('morgan');
 const passport = require('passport');
 require('./passport');
 const cors = require('cors');
+require('dotenv').config();
 let allowedOrigins = [
   'http://localhost:8080/',
   'https://movie-api-db-30.herokuapp.com/',
-  'http://localhost:1234/%60%60%60',
+  'http://localhost:1234/',
+  'http://localhost:1234',
 ];
 
 const app = express();
