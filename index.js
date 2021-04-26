@@ -13,6 +13,7 @@ let allowedOrigins = [
   'https://movie-api-db-30.herokuapp.com/',
   'http://localhost:1234/',
   'http://localhost:1234',
+  'http://localhost:1234/register',
 ];
 
 const app = express();
