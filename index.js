@@ -15,6 +15,7 @@ let allowedOrigins = [
   'http://localhost:1234',
   'http://localhost:1234/register',
   'https://quirky-lewin-5d26cc.netlify.app/',
+  'http://localhost:4200/',
 ];
 
 const app = express();
