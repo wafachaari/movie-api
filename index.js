@@ -18,6 +18,8 @@ let allowedOrigins = [
   'http://localhost:4200/',
   'http://localhost:4200',
   '*',
+  'https://wafachaari.github.io',
+  'https://wafachaari.github.io/',
   'https://wafachaari.github.io/myFlix-Angular-Client',
   'https://wafachaari.github.io/myFlix-Angular-Client/',
   'https://wafachaari.github.io/myFlix-Angular-Client/movies',
